@@ -17,6 +17,10 @@ var CkEditorReplaced = typeof CkEditorReplaced === 'undefined' ? [] : CkEditorRe
         name: 'Accessibility',
         items: ['A11ychecker']
     });
+    
+    ckAdditionalConfigs.a11ychecker_quailParams = {
+        guideline: a11yconfig.guideline
+    }
 
     $(document).ready(function(){
         if (typeof(CKEDITOR) != 'undefined') {
