@@ -15,6 +15,9 @@
                 CKEDITOR.plugins.addExternal('balloonpanel', mydir + 'balloonpanel/plugin.js');
                 CKEDITOR.plugins.addExternal('a11ychecker', mydir + 'a11ychecker/plugin.js');
                 config.extraPlugins += ',balloonpanel,a11ychecker';
+                config.a11ychecker_quailParams = {
+                    guideline: a11yconfig.guideline
+                }
                 config.toolbar.push({
                     name: 'Accessibility',
                     items: ['A11ychecker']

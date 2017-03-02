@@ -1,22 +1,22 @@
 # Which guidelines to use:
 guideline:
-    aAdjacentWithSameResourceShouldBeCombined
-    aImgAltNotRepetitive
-    aLinksAreSeparatedByPrintableCharacters
-    aMustNotHaveJavascriptHref
-    aSuspiciousLinkText
-    blockquoteNotUsedForIndentation
-    documentVisualListsAreMarkedUp
-    headerH1
-    headerH2
-    headerH3
-    headerH4
-    imgAltIsDifferent
-    imgAltIsTooLong
-    imgAltNotEmptyInAnchor
-    imgAltTextNotRedundant
-    imgHasAlt
-    imgShouldNotHaveTitle
-    pNotUsedAsHeader
-    tableDataShouldHaveTh
-    imgWithEmptyAlt
+    - aAdjacentWithSameResourceShouldBeCombined
+    - aImgAltNotRepetitive
+    - aLinksAreSeparatedByPrintableCharacters
+    - aMustNotHaveJavascriptHref
+    - aSuspiciousLinkText
+    - blockquoteNotUsedForIndentation
+    - documentVisualListsAreMarkedUp
+    - headerH1
+    - headerH2
+    - headerH3
+    - headerH4
+    - imgAltIsDifferent
+    - imgAltIsTooLong
+    - imgAltNotEmptyInAnchor
+    - imgAltTextNotRedundant
+    - imgHasAlt
+    - imgShouldNotHaveTitle
+    - pNotUsedAsHeader
+    - tableDataShouldHaveTh
+    - imgWithEmptyAlt
