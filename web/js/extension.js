@@ -1,30 +1,45 @@
+var ckAdditionalExternalPlugins = typeof ckAdditionalExternalPlugins === 'undefined' ? {} : ckAdditionalExternalPlugins;
+var ckAdditionalConfigs = typeof ckAdditionalConfigs === 'undefined' ? {toolbar: []} : ckAdditionalConfigs; 
+var CkEditorReplaced = typeof CkEditorReplaced === 'undefined' ? [] : CkEditorReplaced;
+
 (function(){
     var scripts = document.getElementsByTagName('script');
     var a11yconfig = JSON.parse(scripts[scripts.length-1].dataset.config);
     var path = scripts[scripts.length-1].src.split('?')[0];
     var mydir = path.split('/').slice(0, -1).join('/')+'/';
-    var CKEDITORa11yconfigInitialized = [];
+
+    ckAdditionalExternalPlugins = $.extend(true, {
+        'balloonpanel': mydir + 'balloonpanel/plugin.js',
+        'a11ychecker': mydir + 'a11ychecker/plugin.js',
+    }, ckAdditionalExternalPlugins);
+
+    ckAdditionalConfigs.toolbar.push({
+        name: 'Accessibility',
+        items: ['A11ychecker']
+    });
+
     $(document).ready(function(){
-        if (typeof(CKEDITOR) != 'undefined' ) {
+        if (typeof(CKEDITOR) != 'undefined') {
             CKEDITOR.on('instanceReady',function(event, instance){
-                if (CKEDITORa11yconfigInitialized[event.editor.name]) {
+                if (CkEditorReplaced[event.editor.name]) {
                     return;
                 }
                 var config = event.editor.config;
                 CKEDITOR.instances[event.editor.name].destroy();
-                CKEDITOR.plugins.addExternal('balloonpanel', mydir + 'balloonpanel/plugin.js');
-                CKEDITOR.plugins.addExternal('a11ychecker', mydir + 'a11ychecker/plugin.js');
-                config.extraPlugins += ',balloonpanel,a11ychecker';
-                config.a11ychecker_quailParams = {
-                    guideline: a11yconfig.guideline
+                for (var pluginName in ckAdditionalExternalPlugins) {
+                    CKEDITOR.plugins.addExternal(pluginName, ckAdditionalExternalPlugins[pluginName]);
                 }
-                config.toolbar.push({
-                    name: 'Accessibility',
-                    items: ['A11ychecker']
-                });
+                for (var additionalConfig in ckAdditionalConfigs) {
+                    if(config[additionalConfig].constructor === Array){
+                        config[additionalConfig] = config[additionalConfig].concat(ckAdditionalConfigs[additionalConfig]);
+                    }else{
+                        config[additionalConfig] = ckAdditionalConfigs[additionalConfig];
+                    }
+                }
+                config.extraPlugins += ',' + Object.keys(ckAdditionalExternalPlugins).join(',');
                 CKEDITOR.replace(event.editor.name, config);
-                CKEDITORa11yconfigInitialized[event.editor.name] = true;
+                CkEditorReplaced[event.editor.name] = true;
             });
         }
     });
-})()
+})();
