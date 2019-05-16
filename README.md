@@ -1,4 +1,8 @@
-#Bolt A11y (accessibility) checker
+### Looking for a maintainer
+
+This repo needs a maintainer, if you want to take it over open an issue.
+
+# Bolt A11y (accessibility) checker
 
 
 This extension adds the accessibility checker CK editor plugin to all HTML
